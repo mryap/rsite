@@ -1,0 +1,88 @@
+---
+title: "Yap's R Cookbook"
+---
+
+Hello, Website!
+
+### 
+
+
+### keyboard shortcuts
+
+control-shift-m is the keyboard shortcuts for 'Pipe.'
+![](https://pbs.twimg.com/media/El-mdoEXIAAHJ6y?format=jpg&name=small)
+
+### Creating my First Package
+```{r}
+
+
+```
+
+### Dates
+
+
+    Use str() to look at the structure of x and confirm it is just a character string
+
+    Convert x to a date using as.Date()
+
+    Use str() to look at the structore of x_date and confirm it is a Date
+
+    Now, use as.Date() to store the date April 10, 2014
+    
+```{r}
+# The date R 4.0.0 was released
+x <- "2020-04-24"
+# Examine structure of x
+str(x)
+```
+```{r}
+# Use as.Date() to interpret x as a date
+x_date <- as.Date(x)
+
+# Examine structure of x_date
+str(x_date)
+```
+### Instructions:
+
+- Use read_csv() to read in the CSV file rversions.csv as releases
+
+- Use str() to examine the structure of the date column
+
+- anytime package is loaded and created an object called sep_10_2009. Use the anytime() function to parse sep_10_2009
+
+
+```{r}
+# Load the readr package
+library(readr)
+
+# Use read_csv() to import rversions.csv
+releases <- read_csv("https://assets.datacamp.com/production/course_5348/datasets/rversions.csv")
+```
+
+```{r}
+
+# Examine the structure of the date column
+str(releases$date)    
+```
+### Plotting
+
+Instructions:
+
+    Make a plot of releases over time by setting the x argument of the aes() function to the date column
+
+    Zoom in to the period from 2010 to 2014 by specifying limits from “2010-01-01” to “2014-01-01”. (Note: These strings need to be wrapped in as.Date() to be interpreted as Date objects)
+
+    Adjust the axis labeling by specifying date_breaks of “10 years”and date_labels of “%Y”
+    
+```{r}
+library(ggplot2)
+
+# Set the x axis to the date column
+ggplot(releases, aes(x = date, y = type)) + 
+  geom_line(aes(group = 1, color = factor(major)))
+```
+
+```{r}
+
+```
+    
